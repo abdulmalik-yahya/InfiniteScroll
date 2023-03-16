@@ -17,7 +17,7 @@ closeBtn.addEventListener("click", () => viewImage.style.display = "none");
 const getImage = async (n) => {
     for (let i = 0; i < n; i++) {
         try {
-            const res = await fetch("https://source.unsplash.com/random");
+            const res = await fetch("https://picsum.photos/500");
             // console.log(res);
             let url = res.url;
             // console.log(url);
@@ -38,19 +38,19 @@ const getImage = async (n) => {
     }
 }
 
-// now implement the infinite scroll using
-// clientheight, scrollHeight, scrolltop
+// now, we implement the infinite scroll using
+// clientHeight, scrollHeight, scrollTop
 
 window.addEventListener('scroll', (e) => {
     // console.log(e);
     // destructure the required properties
     const { clientHeight, scrollHeight, scrollTop } = e.target.documentElement;
     // console.log(clientHeight, scro llTop, scrollHeight);
-    // now once the scroll is at the bottom of page, the clientHeight+scrolltop = scrollHeight
+    // now once the scroll is at the bottom of page, the clientHeight+scrollTop = scrollHeight
     if (clientHeight + scrollTop == scrollHeight) {
         // console.log("Reached Bottom");
-        getImage(3); // load new images once we reach bottom of page
+        getImage(3); // load new images each time we reach bottom of page
     }
 })
 
-getImage(9);
+getImage(9); // initially get 9 images to fill the page
